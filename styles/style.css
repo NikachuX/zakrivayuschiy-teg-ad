@@ -10,184 +10,34 @@
 
 */
 
-.page {
-  color: var(--text-color, #000);
-  font-family: var(--page-main-font-family, "Inter"), sans-serif;
-  background-color: var(--page-background-color, #fff);
-  background-image: var(--page-background-image, none);
-  background-size: cover;
-  background-attachment: fixed; /*фон не двигается при прокрутке*/
-  font-variation-settings: "wght" var(--page-main-font-weight, 400);
-  min-inline-size: 320px;
-  min-block-size: 100dvb;
-}
-
-.page__header {
-  margin-bottom: 0;
-}
-
-.main-heading {
-  font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
-  margin-top: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem);
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.top-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: var(--page-acccent-font-family, "PressStart2P"), fantasy;
-  line-height: normal;
-  text-transform: uppercase;
-  background-color: var(--page-background-color, #fff);
-  border: 2px solid var(--color-black, #000);
-  max-width: 696px;
-  margin: 100px auto;
-  padding: 120px;
-}
-
-.subtitle {
-  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
-  margin: 30px 0 0 0;
-  text-align: center;
-}
-
-main {
-  display: grid;
-  justify-items: center;
-  gap: 57px;
-  padding-bottom: 102px;
-}
-
-.posts {
-  display: grid;
-  gap: 52px;
-}
-
-.content {
-  margin: 0 auto;
-  border: 2px solid var(--text-color, #000);
-  background: var(--page-background-color, #fff);
-  max-width: 696px;
-}
-
-.content__title-section {
-  border-bottom: 2px solid var(--text-color, #000);
-  padding: 4px 10px;
-}
-
-.content__heading {
-  font-size: 18px;
-  line-height: normal;
-  font-variation-settings: "wght" var(--headings-font-weight, 700);
-}
-
-.content__media {
-  position: relative;
-  overflow: hidden;
-}
-
-.content__media-label {
-  position: absolute;
-  z-index: 1;
-  opacity: 0.5;
-  color: var(--text-color, #000);
-  font-family: var(--page-acccent-font-family, "PressStart2P"), fantasy;
-  font-size: 14px;
-  line-height: normal;
-  text-shadow: -1px -1px 0 var(--page-background-color, #fff),
-    1px -1px 0 var(--page-background-color, #fff),
-    -1px 1px 0 var(--page-background-color, #fff),
-    1px 1px 0 var(--page-background-color, #fff),
-    0 0 4px var(--page-background-color, #fff);
-  top: 24px;
-  right: 25px;
-  mix-blend-mode: hard-light;
-}
-
-.content__media-img {
-  display: block;
-  object-fit: cover;
-  object-position: center;
+.container {
   width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
 }
 
-.content__description {
-  display: grid;
-  gap: 27px;
-  border-top: 2px solid var(--text-color, #000000);
-  padding: 25px 29px 0 25px;
-  font-size: 18px;
-  line-height: calc(21 / 18);
-}
-
-.filter-grayscale {
-  filter: grayscale(70%);
-}
-
-.filter-multiple {
-  filter: contrast(50%) hue-rotate(35deg) saturate(130%);
-}
-
-.filter-saturate {
-  filter: saturate(250%);
-}
-
-.filter-invert {
-  filter: invert(100%);
-}
-
-.filter-sepia {
-  filter: sepia(90%);
-}
-
-.filter-blur {
-  filter: blur(10px);
-}
-
-.filter-hue-rotate {
-  filter: hue-rotate(300deg);
-}
-
-.content__controls {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  gap: 5px;
-  padding: 25px 25px 23px 25px;
-}
-
-.card__icon-button {
-  display: grid;
-  border: 2px solid transparent;
-  padding: 0;
-  background: transparent;
-  transition: border-color 0.3 ease;
-  cursor: pointer;
-  appearance: none;
-}
-
-.card__icon-button:focus {
-  outline: none;
-}
-
-.card__icon-button:focus-visible {
-  border-color: var(--text-color, #000);
-}
+/* Кнопки */
 
 .button {
   position: relative;
-  z-index: 1;
-  border: 2px solid var(--text-color, #000);
-  padding: 10px 36px;
-  font-family: var(--page-acccent-font-family, "PressStart2P"), fantasy;
-  font-size: 14px;
-  text-transform: inherit;
-  background: var(--page-background-color, #fff);
+  z-index: 2;
+  border: 2px solid var(--button-border-color);
+
+  outline: none;
+  overflow: hidden;
+  background-color: var(--bg-color);
   transition: box-shadow 0.3s ease;
-  appearance: none;
+  cursor: pointer;
+}
+
+.button span {
+  color: var(--color-primary);
+  mix-blend-mode: difference;
+}
+
+.button svg {
+  color: var(--color-primary);
+  mix-blend-mode: difference;
 }
 
 .button::before {
@@ -195,117 +45,320 @@ main {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--text-color, #000);
-  transition: transform 0.5s ease-in-out;
-  transform: scaleX(0);
-  transform-origin: left;
-  width: 100%;
-  height: 100%;
-}
-
-.button:hover::before {
-  transform: scaleX(1);
+  background-color: var(--color-accent);
+  transition: translate 0.5s ease-in-out;
+  translate: -100%;
 }
 
 .button:focus {
-  outline: none;
+  box-shadow: 2px 2px var(--color-accent);
 }
 
-.button:focus-visible {
-  box-shadow: 2px 2px 0px 0px var(--text-color, #000);
+.button:hover::before {
+  translate: 0;
 }
 
-.button__save {
+/* Сердечки */
+
+.like-icon .contour {
+  fill: var(--heart-contour-color);
+  transition: fill 0.3s;
+  transition-delay: 0.1s;
+}
+
+.like-icon .core {
+  fill: transparent;
+  transition: fill 0.3s;
+  transition-delay: 0.03s;
+}
+
+.like-icon .main-body {
+  fill: transparent;
+  transition: fill 0.3s;
+  transition-delay: 0s;
+}
+
+.like-icon .sparks {
+  opacity: 0;
+  fill: var(--heart-sparks-color);
+}
+
+/* :hover */
+
+.like-icon:hover .core {
+  fill: var(--heart-contour-color);
+  transition-delay: 0s;
+}
+
+.like-icon:hover .main-body {
+  fill: var(--heart-contour-color);
+  transition-delay: 0.05s;
+}
+
+/* :active */
+
+.like-icon:active .core {
+  fill: var(--heart-fill-color);
+  transition-delay: 0s;
+}
+
+.like-icon:active .main-body {
+  fill: var(--heart-main-body-color);
+  transition-delay: 0.05s;
+}
+
+/* Лайк поставлен */
+
+.like-icon.is-liked .heart {
+  transform-origin: center;
+  animation: scale 0.3s 0.1s ease-in;
+}
+
+.like-icon.is-liked .contour {
+  fill: var(--heart-fill-color);
+  transition-delay: 0.06s;
+}
+
+.like-icon.is-liked .core {
+  fill: var(--heart-fill-color);
+  transition-delay: 0s;
+}
+
+.like-icon.is-liked .main-body {
+  fill: var(--heart-main-body-color);
+  transition-delay: 0.05s;
+}
+
+.like-icon.is-liked .sparks {
+  animation: sparks 0.3s 0.3s ease-in;
+}
+
+/* Основные стили */
+
+.page {
+  color: var(--color-accent);
+  font-family: var(--font-primary), sans-serif;
+  background-image: var(--background-image);
+
+  background-size: cover;
+  background-attachment: fixed;
+  min-inline-size: 320px;
+  min-block-size: 100dvb;
+  font-variation-settings: "wght" var(--font-weight-card-text);
+}
+
+.header {
+  margin-block: 100px;
+  border: 2px solid #000;
+  padding: clamp(7.5rem, 7.3239rem + 0.7512vw, 8rem) 0;
+  font-family: var(--font-accent);
+  text-align: center;
+  text-transform: uppercase;
+  background-color: var(--bg-color);
+}
+
+.header__logo {
+  font-size: var(--title-font-size);
+}
+
+.header__title {
+  margin-block-start: 20px;
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+}
+
+.main__card {
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+}
+
+.main__card:not(:first-child) {
+  margin-block-start: 50px;
+}
+
+/* Фильтры */
+
+.main__card:nth-child(2) .card__image-item {
+  filter: sepia(1);
+}
+
+.main__card:nth-child(3) .card__image-item {
+  filter: blur(3px);
+}
+
+.main__card:nth-child(4) .card__image-item {
+  filter: invert(1);
+}
+
+.main__card:nth-child(5) .card__image-item {
+  filter: grayscale(1);
+}
+
+.main__card:nth-child(6) .card__image-item {
+  filter: brightness(4);
+}
+
+.main__card:nth-child(7) .card__image-item {
+  filter: hue-rotate(300deg);
+}
+
+.main__card:nth-child(8) .card__image-item {
+  filter: brightness(2) contrast(5);
+}
+
+/* Карточки */
+
+.card__title {
+  border: 1px solid var(--border-color);
+  padding: 5px 10px;
+  font-size: 18px;
+  font-variation-settings: "wght" 700;
+  text-wrap: balance;
+}
+
+.card__image {
+  position: relative;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  border: 1px solid var(--border-color);
+}
+
+.card__image-label {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  z-index: 2;
+  max-width: 320px;
+  opacity: 0.5;
+
+  font-family: var(--font-accent);
+  font-size: 14px;
+  line-height: 1.25;
+  text-align: end;
+
+  text-shadow: 0 1px 1px var(--label-border-color),
+    1px 0 1px var(--label-border-color), 0 -1px 1px var(--label-border-color),
+    -1px 0 1px var(--label-border-color);
+  text-wrap: balance;
+}
+
+@supports (text-stroke: 1px var(--label-border-color)) or
+  (-webkit-text-stroke: 1px var(--label-border-color)) {
+  .card__image-label {
+    text-shadow: none;
+    -webkit-text-stroke: 1px var(--label-border-color);
+    text-stroke: 1px var(--label-border-color);
+  }
+}
+
+.card__image-item {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card__content {
+  border: 1px solid #000;
+  padding: 25px 25px 20px;
+}
+
+.card__text {
+  font-size: 18px;
+  -ms-hyphenate-limit-zone: 1.167em;
+}
+
+.card__text:not(:first-child) {
+  margin-block-start: 27px;
+}
+
+.card__buttons {
+  display: flex;
+  justify-content: end;
+  gap: 4px;
+  margin-block-start: 22px;
+}
+
+.card__icon-button {
+  border: 2px solid transparent;
+
+  outline: none;
+  background: transparent;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.card__icon-button:focus-visible {
+  border-color: var(--color-accent);
+}
+
+.card__like-button {
+  padding: 11px 35px;
+  font-family: var(--font-accent);
+  font-size: 14px;
+  line-height: 0.9;
+}
+
+/* Сохранить на память? */
+
+.main__save-button > svg {
+  width: 21px;
+  height: 21px;
+}
+
+.main__save-button {
+  display: flex;
   align-items: center;
   gap: 8px;
+  margin: 50px auto 100px;
   padding: 15px 20px;
+  font-family: var(--font-accent);
+  font-size: 14px;
+  line-height: 0.9;
 }
 
-.button__icon,
-.button__text {
-  color: var(--text-color, #000);
-  transition: color 0.3s ease;
+.dialog {
+  width: 357px;
+  border: 2px solid #000;
+  padding: 30px;
+  color: var(--color-accent);
+  background-color: var(--bg-color);
 }
 
-.button:hover .button__icon,
-.button:hover .button__text {
-  color: var(--page-background-color, #fff);
-  mix-blend-mode: normal;
+.dialog::backdrop {
+  background-color: var(--backdrop-color);
 }
 
-.button__icon {
-  height: 22px;
-  width: 22px;
-}
-
-.like-icon {
-  height: 36px;
-  width: 39px;
-  display: block;
-}
-
-.modal__window {
-  border: 2px solid var(--text-color, #000);
-  padding: 25px 30px;
-  color: var(--text-color, #000);
-  font-family: var(--page-acccent-font-family, "PressStart2P", fantasy);
-  line-height: 1.5;
-  text-transform: uppercase;
-  background: var(--page-background-color, #fff);
-  max-width: 355px;
-}
-
-.modal__window::backdrop {
-  opacity: 0.75;
-  background: var(--color-black, #000);
-}
-
-.modal__window[open] {
-  display: grid;
-  grid-template-rows: repeat(2, min-content);
-  gap: 30px;
-}
-
-.modal__window-content {
+.dialog__content {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
 
-.modal-window__icon {
+.dialog__icon {
   flex-shrink: 0;
   width: 39px;
   height: 39px;
 }
 
-.modal__window-btn {
+.dialog__text {
+  font-family: var(--font-accent);
+  font-size: 14px;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.dialog__ok-button {
   width: 100%;
+  margin-top: 30px;
+  padding-block: 10.5px;
 }
 
-@media (width < 376px) {
-  .modal__window {
-    padding: 28px 34px 28px 40px;
-    max-width: 340px;
-  }
-  .button__save {
+.dialog__ok-text {
+  font-family: var(--font-accent);
+  font-size: 14px;
+  line-height: 0.9;
+}
+
+@media (width <= 375px) {
+  .main__save-button {
     flex-direction: column;
-  }
-  .button__icon {
-    height: 28px;
-    width: 28px;
-  }
-}
-
-@supports (
-  (-webkit-text-stroke: 1px var(--page-background-color, #fff)) or
-    (text-stroke: 1px var(--page-background-color, #fff))
-) {
-  .content__media-label {
-    text-shadow: none;
-    -webkit-text-stroke: 1px var(--page-background-color, #fff);
-    text-stroke: 1px var(--page-background-color, #fff);
   }
 }
